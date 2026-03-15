@@ -14,7 +14,9 @@ BEGIN {
     my $root = File::Spec->rel2abs(
         File::Spec->catdir( dirname(__FILE__), '..', '..', '..' )
     );
+    my $lib = File::Spec->catdir($root, 'lib');
 
+    unshift @INC, $lib unless grep { $_ eq $lib } @INC;
     unshift @INC, $root unless grep { $_ eq $root } @INC;
     $ENV{CSF_TEST_REPO_ROOT} ||= $root;
 }
