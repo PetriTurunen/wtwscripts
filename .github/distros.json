@@ -1,0 +1,9 @@
+[
+  { "os-name": "Debian 12",          "container": "debian:12",          "setup-cmd": "apt-get update && apt-get install -y curl" },
+  { "os-name": "Debian 13 (Trixie)", "container": "debian:trixie-slim", "setup-cmd": "apt-get update && apt-get install -y curl" },
+  { "os-name": "Ubuntu 22.04",       "container": "ubuntu:22.04",       "setup-cmd": "apt-get update && apt-get install -y curl" },
+  { "os-name": "Ubuntu 24.04",       "container": "ubuntu:24.04",       "setup-cmd": "apt-get update && apt-get install -y curl" },
+  { "os-name": "AlmaLinux 8",        "container": "almalinux:8",        "setup-cmd": "dnf install -y epel-release curl" },
+  { "os-name": "AlmaLinux 9",        "container": "almalinux:9",        "setup-cmd": "dnf install -y epel-release" },
+  { "os-name": "AlmaLinux 10",       "container": "almalinux:10",       "setup-cmd": "dnf install -y epel-release" }
+]

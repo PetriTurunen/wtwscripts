@@ -4,39 +4,23 @@ on:
   workflow_call:
 
 jobs:
-  test:
+  compatibility:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.scan.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: scan
+        run: echo "matrix=$(cat .github/distros.json | jq -c .)" >> "$GITHUB_OUTPUT"
+
+  tests:
+    needs: compatibility
     name: "${{ matrix.os-name }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        include:
-          # Debian
-          - os-name: "Debian 12"
-            container: "debian:12"
-            setup-cmd: "apt-get update && apt-get install -y curl"
-          - os-name: "Debian 13 (Trixie)"
-            container: "debian:trixie-slim"
-            setup-cmd: "apt-get update && apt-get install -y curl"
-
-          # Ubuntu
-          - os-name: "Ubuntu 22.04"
-            container: "ubuntu:22.04"
-            setup-cmd: "apt-get update && apt-get install -y curl"
-          - os-name: "Ubuntu 24.04"
-            container: "ubuntu:24.04"
-            setup-cmd: "apt-get update && apt-get install -y curl"
-
-          # AlmaLinux
-          - os-name: "AlmaLinux 8"
-            container: "almalinux:8"
-            setup-cmd: "dnf install -y epel-release curl"
-          - os-name: "AlmaLinux 9"
-            container: "almalinux:9"
-            setup-cmd: "dnf install -y epel-release"
-          - os-name: "AlmaLinux 10"
-            container: "almalinux:10"
-            setup-cmd: "dnf install -y epel-release"
+        include: ${{ fromJson(needs.compatibility.outputs.matrix) }}
 
     container:
       image: ${{ matrix.container }}
