@@ -58,6 +58,39 @@ jobs:
       - name: Smoke CSF
         uses: ./.github/actions/smoke-csf
 
+  upgrade:
+    name: "Upgrade"
+    needs: install
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:24.04
+      options: --privileged
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install OS dependencies
+        shell: bash
+        run: apt-get update && apt-get install -y curl perl
+
+      - name: Install latest release
+        shell: bash
+        run: bash <(curl -sL https://csf.black.host)
+
+      - name: Pre-upgrade version
+        shell: bash
+        run: csf -v || true
+
+      - name: Upgrade from source
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE"
+          sh install.sh
+
+      - name: Post-upgrade version
+        shell: bash
+        run: csf -v || true
+
   uninstall:
     name: "Uninstall"
     needs: install
