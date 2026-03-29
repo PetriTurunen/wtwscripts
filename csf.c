@@ -17,11 +17,12 @@
 	# this program; if not, see <https://www.gnu.org/licenses>.
 */
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include <string.h>
 #include <pwd.h>
-main ()
+int main(void)
 {
 	FILE *adminFile;
 	FILE *resellerFile;

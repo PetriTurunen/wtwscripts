@@ -78,6 +78,8 @@ sub urlget {
 	my $status;
 	my $text;
 
+	$file //= '';
+
 	if (!defined $url) {carp "url not specified"; return}
 
 	if ($option == 3) {
