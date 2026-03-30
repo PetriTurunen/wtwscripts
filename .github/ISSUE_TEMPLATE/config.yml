@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability / private report
+    url: https://github.com/Black-HOST/csf/security/policy
+    about: Do not open public issues for vulnerabilities, bypasses, or other sensitive security reports.
+  - name: Contribution guide
+    url: https://github.com/Black-HOST/csf/wiki/Contributing
+    about: Read the branching, testing, and contribution rules before opening implementation-heavy issues or PRs.

@@ -1,0 +1,200 @@
+name: Issue report
+description: Structured CSF issue form for bugs, regressions, installer failures, runtime problems, and test/CI issues.
+title: "[issue]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for opening an issue.
+
+        This repository covers a security-sensitive Linux firewall stack with installer logic, runtime scripts, control-panel integrations, config defaults, and test workflows. The more exact your report is, the faster maintainers — can map the issue to the right subsystem.
+
+        **Important:** If this is a private security vulnerability, **do not open a public issue**. Follow the instructions in the [security policy](https://github.com/Black-HOST/csf/security/policy).
+
+        High-signal reports usually include:
+        - the exact command or action that triggered the issue
+        - expected behavior vs actual behavior
+        - OS / panel / environment details
+        - relevant logs or command output
+        - whether it reproduces on the latest release or current `main`
+
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Issue type
+      description: Pick the closest fit.
+      options:
+        - Fresh install problem
+        - Upgrade / migration problem
+        - Runtime firewall behavior
+        - LFD / detection / alerting problem
+        - Control panel integration problem
+        - Config / default values problem
+        - Test / CI problem
+        - Documentation problem
+        - Regression
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: summary
+    attributes:
+      label: One-line summary
+      description: Short, concrete description of the problem.
+      placeholder: Ubuntu 24.04 fresh install fails because install.sh cannot locate a moved panel path
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is happening?
+      description: Describe the observed behavior clearly. Include the trigger and the visible outcome.
+      placeholder: |
+        When I run `sh install.sh` on a clean Ubuntu 24.04 VM, the installer exits after copying files and before service setup.
+
+        Visible result:
+        - `/etc/csf/csf.conf` exists
+        - `csf -v` fails
+        - CI/local output shows a missing path error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+      placeholder: The installer should complete successfully, register CSF/LFD, and `csf -v` should print the installed version.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Exact reproduction steps
+      description: Prefer a minimal, deterministic sequence. Include exact commands, file edits, UI clicks, upgrade path, or config changes.
+      placeholder: |
+        1. Start a fresh Ubuntu 24.04 VM
+        2. Clone this repo and checkout commit `abc1234`
+        3. Run `sh install.sh`
+        4. Run `csf -v`
+        5. Observe the failure
+
+        If relevant, also mention:
+        - whether this is a fresh install or upgrade
+        - previous working version / commit
+        - whether the issue reproduces on a second clean system
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs, errors, and command output
+      description: Paste the most relevant output. Sanitize secrets, tokens, and private IPs if needed.
+      render: shell
+      placeholder: |
+        Paste the exact error output here.
+
+        Good examples:
+        - installer output
+        - `csf -v`
+        - `perl -c csf.pl`
+        - `perl -c lfd.pl`
+        - `csftest.pl`
+        - relevant GitHub Actions failure text
+        - relevant service or application logs
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment details
+      description: Include everything needed to reason about the environment.
+      placeholder: |
+        CSF version / ref:
+        Install method:
+        OS + version:
+        Kernel:
+        Control panel (if any):
+        Virtualization / provider:
+        Firewall backend (iptables / nft / unsure):
+        SELinux/AppArmor status:
+        Custom local modifications:
+        Related paths touched:
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact and scope
+      description: Explain how bad this is and who it affects.
+      placeholder: |
+        Example:
+        - Blocks fresh installs on Ubuntu 24.04
+        - Upgrade succeeds but breaks panel integration
+        - Only affects DirectAdmin installs
+        - Cosmetic/docs-only issue
+    validations:
+      required: true
+
+  - type: textarea
+    id: regression
+    attributes:
+      label: Regression / history (if known)
+      description: If this used to work, tell us what changed.
+      placeholder: |
+        Last known good version/commit:
+        First known bad version/commit:
+        What changed recently (package upgrade, path move, config change, panel update, distro upgrade, etc.):
+
+  - type: textarea
+    id: suspects
+    attributes:
+      label: Suspected area or files (best guess)
+      description: Optional, but useful for faster triage.
+      placeholder: |
+        Possible subsystem(s):
+        - `install.sh`
+        - `install.generic.sh`
+        - `csf.pl`
+        - `lfd.pl`
+        - `conf/*`
+        - `panels/*`
+        - `lib/ConfigServer/*`
+        - `.github/tests/*`
+
+        If you already traced the issue, mention the exact function, file, or commit.
+
+  - type: textarea
+    id: tried
+    attributes:
+      label: What have you already tried?
+      description: Tell us what you validated so maintainers do not repeat the same steps.
+      placeholder: |
+        Example:
+        - reproduced on latest `main`
+        - reproduced on latest release
+        - tested on a clean VM
+        - compared with previous commit
+        - ran `csftest.pl`
+        - checked path/file permissions
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues/PRs first.
+          required: true
+        - label: I included exact steps, relevant logs, and environment details.
+          required: true
+        - label: I removed secrets, tokens, passwords, and other private material.
+          required: true
+        - label: This is not a private security vulnerability that should be reported via SECURITY.md.
+          required: true
+        - label: I tested against the latest release or current `main` when reasonably possible.
+          required: false
