@@ -28,6 +28,14 @@ our (%config, %configsetting, $vps, $oldversion);
 
 $oldversion = $ARGV[0];
 
+my $panel = $ARGV[1] || "generic";
+if ($panel !~ /^[a-z]+$/) {
+	die "Error: Invalid panel name [$panel]\n";
+}
+if (! -d "conf/$panel") {
+	die "Error: No configuration directory found for panel [$panel] in conf/\n";
+}
+
 open (VERSION, "<","/etc/csf/version.txt");
 flock (VERSION, LOCK_SH);
 my $version = <VERSION>;
@@ -416,7 +424,7 @@ if ($config{TESTING}) {
 	}
 }
 
-open (IN, "<", "conf/interworx/csf.conf") or die $!;
+open (IN, "<", "conf/$panel/csf.conf") or die $!;
 flock (IN, LOCK_SH) or die $!;
 my @config = <IN>;
 close (IN);

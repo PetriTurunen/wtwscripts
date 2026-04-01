@@ -418,8 +418,8 @@ cp -avf csget.pl /etc/cron.daily/csget
 chmod 700 /etc/cron.daily/csget
 /etc/cron.daily/csget --nosleep
 
-chmod -v 700 auto.cyberpanel.pl
-./auto.cyberpanel.pl $OLDVERSION
+chmod -v 700 auto.pl
+./auto.pl $OLDVERSION cyberpanel
 
 if test `cat /proc/1/comm` = "systemd"
 then
