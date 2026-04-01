@@ -370,9 +370,9 @@ mkdir panels/webmin/csf/images
 mkdir panels/da/images
 mkdir panels/interworx/images
 
-cp -avf csf/* panels/webmin/csf/images/
-cp -avf csf/* panels/da/images/
-cp -avf csf/* panels/interworx/images/
+cp -avf panels/csf/* panels/webmin/csf/images/
+cp -avf panels/csf/* panels/da/images/
+cp -avf panels/csf/* panels/interworx/images/
 
 cp -avf messenger/*.php /etc/csf/messenger/
 cp -avf uninstall.sh /usr/local/csf/bin/
@@ -386,7 +386,8 @@ cp -avf version.txt /etc/csf/
 cp -avf LICENSE /etc/csf/
 cp -avf panels/webmin /usr/local/csf/lib/
 cp -avf lib/* /usr/local/csf/lib/
-cp -avf conf/ui/images /etc/csf/ui/.
+mkdir -v -p /etc/csf/ui/images
+cp -avf panels/csf/* /etc/csf/ui/images/.
 cp -avf profiles /usr/local/csf/
 cp -avf conf/csf.cwp.conf /usr/local/csf/profiles/reset_to_defaults.conf
 cp -avf lfd.logrotate /etc/logrotate.d/lfd
@@ -532,7 +533,7 @@ chmod 700 /usr/local/cwpsrv/htdocs/resources/admin/modules/csf.pl
 cp -av panels/cwp/ajax_csfframe.php /usr/local/cwpsrv/htdocs/resources/admin/addons/ajax/
 cp -av panels/cwp/configserver.php /usr/local/cwpsrv/htdocs/resources/admin/include/
 mkdir -v -m 0600 /usr/local/cwpsrv/htdocs/admin/design/csf/
-cp -avf csf/* /usr/local/cwpsrv/htdocs/admin/design/csf/
+cp -avf panels/csf/* /usr/local/cwpsrv/htdocs/admin/design/csf/
 
 cd panels/webmin ; tar -czf /usr/local/csf/csfwebmin.tgz ./*
 ln -svf /usr/local/csf/csfwebmin.tgz /etc/csf/

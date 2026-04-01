@@ -357,9 +357,9 @@ mkdir panels/webmin/csf/images
 mkdir panels/da/images
 mkdir panels/interworx/images
 
-cp -avf csf/* panels/webmin/csf/images/
-cp -avf csf/* panels/da/images/
-cp -avf csf/* panels/interworx/images/
+cp -avf panels/csf/* panels/webmin/csf/images/
+cp -avf panels/csf/* panels/da/images/
+cp -avf panels/csf/* panels/interworx/images/
 
 cp -avf messenger/*.php /etc/csf/messenger/
 cp -avf uninstall.sh /usr/local/csf/bin/
@@ -373,7 +373,8 @@ cp -avf version.txt /etc/csf/
 cp -avf LICENSE /etc/csf/
 cp -avf panels/webmin /usr/local/csf/lib/
 cp -avf lib/* /usr/local/csf/lib/
-cp -avf conf/ui/images /etc/csf/ui/.
+mkdir -v -p /etc/csf/ui/images
+cp -avf panels/csf/* /etc/csf/ui/images/.
 cp -avf profiles /usr/local/csf/
 cp -avf conf/csf.directadmin.conf /usr/local/csf/profiles/reset_to_defaults.conf
 cp -avf lfd.logrotate /etc/logrotate.d/lfd
@@ -412,7 +413,7 @@ mkdir -p /usr/local/directadmin/plugins/csf/
 chmod 711 /usr/local/directadmin/plugins/csf
 chown diradmin:diradmin /usr/local/directadmin/plugins/csf
 cp -avf panels/da/* /usr/local/directadmin/plugins/csf/
-cp -avf csf/* /usr/local/directadmin/plugins/csf/images/
+cp -avf panels/csf/* /usr/local/directadmin/plugins/csf/images/
 find /usr/local/directadmin/plugins/csf/ -type d -exec chmod -v 755 {} \;
 find /usr/local/directadmin/plugins/csf/ -type f -exec chmod -v 644 {} \;
 

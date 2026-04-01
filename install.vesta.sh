@@ -370,9 +370,9 @@ mkdir panels/webmin/csf/images
 mkdir panels/da/images
 mkdir panels/interworx/images
 
-cp -avf csf/* panels/webmin/csf/images/
-cp -avf csf/* panels/da/images/
-cp -avf csf/* panels/interworx/images/
+cp -avf panels/csf/* panels/webmin/csf/images/
+cp -avf panels/csf/* panels/da/images/
+cp -avf panels/csf/* panels/interworx/images/
 
 cp -avf messenger/*.php /etc/csf/messenger/
 cp -avf uninstall.sh /usr/local/csf/bin/
@@ -386,7 +386,8 @@ cp -avf version.txt /etc/csf/
 cp -avf LICENSE /etc/csf/
 cp -avf panels/webmin /usr/local/csf/lib/
 cp -avf lib/* /usr/local/csf/lib/
-cp -avf conf/ui/images /etc/csf/ui/.
+mkdir -v -p /etc/csf/ui/images
+cp -avf panels/csf/* /etc/csf/ui/images/.
 cp -avf profiles /usr/local/csf/
 cp -avf conf/csf.vesta.conf /usr/local/csf/profiles/reset_to_defaults.conf
 cp -avf lfd.logrotate /etc/logrotate.d/lfd
@@ -508,7 +509,7 @@ chown -f root:root /usr/sbin/csf /usr/sbin/lfd /etc/logrotate.d/lfd /etc/cron.d/
 
 mkdir -v -m 0600 /usr/local/vesta/web/list/csf/
 cp -avf panels/vestacp/* /usr/local/vesta/web/list/csf/
-cp -avf csf /usr/local/vesta/web/list/csf/images/
+cp -avf panels/csf /usr/local/vesta/web/list/csf/images/
 find /usr/local/vesta/web/list/csf -type d -exec chmod -v 755 {} \;
 find /usr/local/vesta/web/list/csf -type f -exec chmod -v 644 {} \;
 mv /usr/local/vesta/web/list/csf/csf.pl /usr/local/vesta/bin/

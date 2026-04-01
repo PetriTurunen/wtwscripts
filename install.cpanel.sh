@@ -362,12 +362,12 @@ mkdir panels/webmin/csf/images
 mkdir panels/da/images
 mkdir panels/interworx/images
 
-cp -avf csf/* panels/webmin/csf/images/
-cp -avf csf/* panels/da/images/
-cp -avf csf/* panels/interworx/images/
+cp -avf panels/csf/* panels/webmin/csf/images/
+cp -avf panels/csf/* panels/da/images/
+cp -avf panels/csf/* panels/interworx/images/
 
 cp -avf messenger/*.php /etc/csf/messenger/
-cp -avf csf/csf_small.png /usr/local/cpanel/whostmgr/docroot/addon_plugins/
+cp -avf panels/csf/csf_small.png /usr/local/cpanel/whostmgr/docroot/addon_plugins/
 cp -avf uninstall.sh /usr/local/csf/bin/
 cp -avf csftest.pl /usr/local/csf/bin/
 cp -avf remove_apf_bfd.sh /usr/local/csf/bin/
@@ -379,7 +379,8 @@ cp -avf version.txt /etc/csf/
 cp -avf LICENSE /etc/csf/
 cp -avf panels/webmin /usr/local/csf/lib/
 cp -avf lib/* /usr/local/csf/lib/
-cp -avf conf/ui/images /etc/csf/ui/.
+mkdir -v -p /etc/csf/ui/images
+cp -avf panels/csf/* /etc/csf/ui/images/.
 cp -avf profiles /usr/local/csf/
 cp -avf conf/csf.conf /usr/local/csf/profiles/reset_to_defaults.conf
 cp -avf conf/cpanel.comodo.ignore /etc/csf/
@@ -428,9 +429,11 @@ chmod 700 /usr/local/cpanel/whostmgr/docroot/cgi/configserver/csf
 cp -avf panels/cpanel/csf.cgi /usr/local/cpanel/whostmgr/docroot/cgi/configserver/csf.cgi
 chmod -v 700 /usr/local/cpanel/whostmgr/docroot/cgi/configserver/csf.cgi
 
-cp -avf csf/ /usr/local/cpanel/whostmgr/docroot/cgi/configserver/
+cp -avf panels/csf/ /usr/local/cpanel/whostmgr/docroot/cgi/configserver/
 cp -avf panels/cpanel/Driver /usr/local/cpanel/whostmgr/docroot/cgi/configserver/csf/
-cp -avf conf/ui/images/icon.gif /usr/local/cpanel/whostmgr/docroot/themes/x/icons/csf.gif
+if [ -e "panels/csf/icon.gif" ]; then
+	cp -avf panels/csf/icon.gif /usr/local/cpanel/whostmgr/docroot/themes/x/icons/csf.gif
+fi
 cp -avf panels/cpanel/csf.tmpl /usr/local/cpanel/whostmgr/docroot/templates/
 
 VERSION=`cat /usr/local/cpanel/version | cut -d '.' -f2`
@@ -456,7 +459,7 @@ if [ -e "/usr/local/cpanel/bin/register_appconfig" ]; then
 else
     cp -avf panels/cpanel/csf.cgi /usr/local/cpanel/whostmgr/docroot/cgi/addon_csf.cgi
     chmod -v 700 /usr/local/cpanel/whostmgr/docroot/cgi/addon_csf.cgi
-    cp -avf csf/ /usr/local/cpanel/whostmgr/docroot/cgi/
+    cp -avf panels/csf/ /usr/local/cpanel/whostmgr/docroot/cgi/
     if [ ! -d "/var/cpanel/apps" ]; then
         mkdir /var/cpanel/apps
         chmod 755 /var/cpanel/apps
