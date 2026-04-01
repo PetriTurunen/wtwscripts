@@ -435,7 +435,7 @@ if (&checkversion("14.03") and !-e "/var/lib/csf/auto1403") {
 	if ($roundcube < 1.4) {$roundcube = 0} else {$roundcube = 1}
 }
 
-open (IN, "<", "csf.directadmin.conf") or die $!;
+open (IN, "<", "conf/directadmin/csf.conf") or die $!;
 flock (IN, LOCK_SH) or die $!;
 my @config = <IN>;
 close (IN);

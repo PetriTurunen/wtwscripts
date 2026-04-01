@@ -432,7 +432,7 @@ if ($config{TESTING}) {
 	}
 }
 
-open (IN, "<", "csf.cwp.conf") or die $!;
+open (IN, "<", "conf/cwp/csf.conf") or die $!;
 flock (IN, LOCK_SH) or die $!;
 my @config = <IN>;
 close (IN);

@@ -77,7 +77,7 @@ if [ -e "/etc/csf/alert.txt" ]; then
 fi
 
 if [ ! -e "/etc/csf/csf.conf" ]; then
-	cp -avf conf/csf.vesta.conf /etc/csf/csf.conf
+	cp -avf conf/vesta/csf.conf /etc/csf/csf.conf
 fi
 
 if [ ! -d /var/lib/csf ]; then
@@ -94,7 +94,7 @@ if [ ! -d /usr/local/csf/tpl ]; then
 fi
 
 if [ ! -e "/etc/csf/csf.allow" ]; then
-	cp -avf conf/csf.vesta.allow /etc/csf/csf.allow
+	cp -avf conf/vesta/csf.allow /etc/csf/csf.allow
 fi
 if [ ! -e "/etc/csf/csf.deny" ]; then
 	cp -avf conf/csf.deny /etc/csf/.
@@ -123,10 +123,10 @@ else
 	cp -avf conf/csf.blocklists /etc/csf/csf.blocklists.new
 fi
 if [ ! -e "/etc/csf/csf.ignore" ]; then
-	cp -avf conf/csf.vesta.ignore /etc/csf/csf.ignore
+	cp -avf conf/vesta/csf.ignore /etc/csf/csf.ignore
 fi
 if [ ! -e "/etc/csf/csf.pignore" ]; then
-	cp -avf conf/csf.vesta.pignore /etc/csf/csf.pignore
+	cp -avf conf/vesta/csf.pignore /etc/csf/csf.pignore
 fi
 if [ ! -e "/etc/csf/csf.rignore" ]; then
 	cp -avf conf/csf.rignore /etc/csf/.
@@ -386,7 +386,7 @@ cp -avf lib/* /usr/local/csf/lib/
 mkdir -v -p /etc/csf/ui/images
 cp -avf panels/csf/* /etc/csf/ui/images/.
 cp -avf profiles /usr/local/csf/
-cp -avf conf/csf.vesta.conf /usr/local/csf/profiles/reset_to_defaults.conf
+cp -avf conf/vesta/csf.conf /usr/local/csf/profiles/reset_to_defaults.conf
 cp -avf lfd.logrotate /etc/logrotate.d/lfd
 chcon --reference /etc/logrotate.d /etc/logrotate.d/lfd
 

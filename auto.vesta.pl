@@ -433,7 +433,7 @@ if ($config{TESTING}) {
 	}
 }
 
-open (IN, "<", "csf.vesta.conf") or die $!;
+open (IN, "<", "conf/vesta/csf.conf") or die $!;
 flock (IN, LOCK_SH) or die $!;
 my @config = <IN>;
 close (IN);

@@ -65,12 +65,12 @@ if (-e "/etc/redhat-release") {
 	print STDERR "Using configuration defaults\n";
 }
 elsif (-e "/etc/SuSE-release") {
-	open (my $IN, "<", "csf.generic.conf") or die $!;
+	open (my $IN, "<", "conf/generic/csf.conf") or die $!;
 	flock ($IN, LOCK_SH) or die $!;
 	my @config = <$IN>;
 	close ($IN);
 	chomp @config;
-	open (my $OUT, ">", "csf.generic.conf") or die $!;
+	open (my $OUT, ">", "conf/generic/csf.conf") or die $!;
 	flock ($OUT, LOCK_EX) or die $!;
 	foreach my $line (@config) {
 		if ($line =~ /^IPTABLES /) {$line = 'IPTABLES = "/usr/sbin/iptables"'}
@@ -88,12 +88,12 @@ elsif (-e "/etc/SuSE-release") {
 	print STDERR "Configuration modified for SuSE settings /etc/csf/csf.conf\n";
 }
 elsif ((-e "/etc/debian_version") or (-e "/etc/lsb-release") or (-e "/etc/gentoo-release")) {
-	open (my $IN, "<", "csf.generic.conf") or die $!;
+	open (my $IN, "<", "conf/generic/csf.conf") or die $!;
 	flock ($IN, LOCK_SH) or die $!;
 	my @config = <$IN>;
 	close ($IN);
 	chomp @config;
-	open (my $GENERIC, ">", "csf.generic.conf") or die $!;
+	open (my $GENERIC, ">", "conf/generic/csf.conf") or die $!;
 	flock ($GENERIC, LOCK_EX) or die $!;
 	foreach my $line (@config) {
 		if ($line =~ /^FUSER/) {$line = 'FUSER = "/bin/fuser"'}
@@ -113,12 +113,12 @@ elsif ((-e "/etc/debian_version") or (-e "/etc/lsb-release") or (-e "/etc/gentoo
 	}
 	close ($GENERIC);
 
-	open (my $DIRECTADMIN, "<", "csf.directadmin.conf") or die $!;
+	open (my $DIRECTADMIN, "<", "conf/directadmin/csf.conf") or die $!;
 	flock ($DIRECTADMIN, LOCK_SH) or die $!;
 	@config = <$DIRECTADMIN>;
 	close ($DIRECTADMIN);
 	chomp @config;
-	open (my $OUT, ">", "csf.directadmin.conf") or die $!;
+	open (my $OUT, ">", "conf/directadmin/csf.conf") or die $!;
 	flock ($OUT, LOCK_EX) or die $!;
 	foreach my $line (@config) {
 		if ($line =~ /^FUSER/) {$line = 'FUSER = "/bin/fuser"'}
@@ -131,12 +131,12 @@ elsif ((-e "/etc/debian_version") or (-e "/etc/lsb-release") or (-e "/etc/gentoo
 	close ($OUT);
 	print STDERR "Configuration modified for Debian/Ubuntu/Gentoo settings /etc/csf/csf.conf\n";
 
-	open (my $IN, "<", "csf.cyberpanel.conf") or die $!;
+	open (my $IN, "<", "conf/cyberpanel/csf.conf") or die $!;
 	flock ($IN, LOCK_SH) or die $!;
 	my @config = <$IN>;
 	close ($IN);
 	chomp @config;
-	open (my $GENERIC, ">", "csf.cyberpanel.conf") or die $!;
+	open (my $GENERIC, ">", "conf/cyberpanel/csf.conf") or die $!;
 	flock ($GENERIC, LOCK_EX) or die $!;
 	foreach my $line (@config) {
 		if ($line =~ /^FUSER/) {$line = 'FUSER = "/bin/fuser"'}
@@ -158,12 +158,12 @@ elsif ((-e "/etc/debian_version") or (-e "/etc/lsb-release") or (-e "/etc/gentoo
 	close ($GENERIC);
 }
 elsif (-e "/etc/slackware-version") {
-	open (my $IN, "<", "csf.generic.conf") or die $!;
+	open (my $IN, "<", "conf/generic/csf.conf") or die $!;
 	flock ($IN, LOCK_SH) or die $!;
 	my @config = <$IN>;
 	close ($IN);
 	chomp @config;
-	open (my $OUT, ">", "csf.generic.conf") or die $!;
+	open (my $OUT, ">", "conf/generic/csf.conf") or die $!;
 	flock ($OUT, LOCK_EX) or die $!;
 	foreach my $line (@config) {
 		if ($line =~ /^IPTABLES /) {$line = 'IPTABLES = "/usr/sbin/iptables"'}

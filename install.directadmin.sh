@@ -64,7 +64,7 @@ if [ -e "/etc/csf/alert.txt" ]; then
 fi
 
 if [ ! -e "/etc/csf/csf.conf" ]; then
-	cp -avf conf/csf.directadmin.conf /etc/csf/csf.conf
+	cp -avf conf/directadmin/csf.conf /etc/csf/csf.conf
 fi
 
 if [ ! -d /var/lib/csf ]; then
@@ -81,7 +81,7 @@ if [ ! -d /usr/local/csf/tpl ]; then
 fi
 
 if [ ! -e "/etc/csf/csf.allow" ]; then
-	cp -avf conf/csf.directadmin.allow /etc/csf/csf.allow
+	cp -avf conf/directadmin/csf.allow /etc/csf/csf.allow
 fi
 if [ ! -e "/etc/csf/csf.deny" ]; then
 	cp -avf conf/csf.deny /etc/csf/.
@@ -110,10 +110,10 @@ else
 	cp -avf conf/csf.blocklists /etc/csf/csf.blocklists.new
 fi
 if [ ! -e "/etc/csf/csf.ignore" ]; then
-	cp -avf conf/csf.directadmin.ignore /etc/csf/csf.ignore
+	cp -avf conf/directadmin/csf.ignore /etc/csf/csf.ignore
 fi
 if [ ! -e "/etc/csf/csf.pignore" ]; then
-	cp -avf conf/csf.directadmin.pignore /etc/csf/csf.pignore
+	cp -avf conf/directadmin/csf.pignore /etc/csf/csf.pignore
 fi
 if [ ! -e "/etc/csf/csf.rignore" ]; then
 	cp -avf conf/csf.rignore /etc/csf/.
@@ -373,7 +373,7 @@ cp -avf lib/* /usr/local/csf/lib/
 mkdir -v -p /etc/csf/ui/images
 cp -avf panels/csf/* /etc/csf/ui/images/.
 cp -avf profiles /usr/local/csf/
-cp -avf conf/csf.directadmin.conf /usr/local/csf/profiles/reset_to_defaults.conf
+cp -avf conf/directadmin/csf.conf /usr/local/csf/profiles/reset_to_defaults.conf
 cp -avf lfd.logrotate /etc/logrotate.d/lfd
 
 rm -fv /etc/csf/csf.spamhaus /etc/csf/csf.dshield /etc/csf/csf.tor /etc/csf/csf.bogon

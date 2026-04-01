@@ -416,7 +416,7 @@ if ($config{TESTING}) {
 	}
 }
 
-open (IN, "<", "csf.generic.conf") or die $!;
+open (IN, "<", "conf/generic/csf.conf") or die $!;
 flock (IN, LOCK_SH) or die $!;
 my @config = <IN>;
 close (IN);

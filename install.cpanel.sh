@@ -82,11 +82,11 @@ if [ -e "/etc/csf/alert.txt" ]; then
 fi
 
 if [ ! -e "/etc/csf/csf.conf" ]; then
-	cp -avf conf/csf.conf /etc/csf/.
+	cp -avf conf/cpanel/csf.conf /etc/csf/.
 fi
 
 if [ ! -e "/etc/csf/csf.allow" ]; then
-	cp -avf conf/csf.allow /etc/csf/.
+	cp -avf conf/cpanel/csf.allow /etc/csf/.
 fi
 if [ ! -e "/etc/csf/csf.deny" ]; then
 	cp -avf conf/csf.deny /etc/csf/.
@@ -115,10 +115,10 @@ else
 	cp -avf conf/csf.blocklists /etc/csf/csf.blocklists.new
 fi
 if [ ! -e "/etc/csf/csf.ignore" ]; then
-	cp -avf conf/csf.ignore /etc/csf/.
+	cp -avf conf/cpanel/csf.ignore /etc/csf/.
 fi
 if [ ! -e "/etc/csf/csf.pignore" ]; then
-	cp -avf conf/csf.pignore /etc/csf/.
+	cp -avf conf/cpanel/csf.pignore /etc/csf/.
 fi
 if [ ! -e "/etc/csf/csf.rignore" ]; then
 	cp -avf conf/csf.rignore /etc/csf/.
@@ -379,11 +379,11 @@ cp -avf lib/* /usr/local/csf/lib/
 mkdir -v -p /etc/csf/ui/images
 cp -avf panels/csf/* /etc/csf/ui/images/.
 cp -avf profiles /usr/local/csf/
-cp -avf conf/csf.conf /usr/local/csf/profiles/reset_to_defaults.conf
-cp -avf conf/cpanel.comodo.ignore /etc/csf/
-cp -avf conf/cpanel.comodo.allow /etc/csf/
-cp -avf conf/cpanel.ignore /etc/csf/
-cp -avf conf/cpanel.allow /etc/csf/
+cp -avf conf/cpanel/csf.conf /usr/local/csf/profiles/reset_to_defaults.conf
+cp -avf conf/cpanel/cpanel.comodo.ignore /etc/csf/
+cp -avf conf/cpanel/cpanel.comodo.allow /etc/csf/
+cp -avf conf/cpanel/cpanel.ignore /etc/csf/
+cp -avf conf/cpanel/cpanel.allow /etc/csf/
 cp -avf messenger/*.php /etc/csf/messenger/.
 cp -avf lfd.logrotate /etc/logrotate.d/lfd
 
