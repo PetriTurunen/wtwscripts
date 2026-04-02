@@ -296,10 +296,10 @@ if [ ! -e "/usr/local/csf/bin/pt_deleted_action.pl" ]; then
 	cp -avf pt_deleted_action.pl /usr/local/csf/bin/.
 fi
 if [ ! -e "/etc/csf/messenger" ]; then
-	cp -avf messenger /etc/csf/.
+	cp -avf etc/messenger /etc/csf/.
 fi
 if [ ! -e "/etc/csf/messenger/index.recaptcha.html" ]; then
-	cp -avf messenger/index.recaptcha.html /etc/csf/messenger/.
+	cp -avf etc/messenger/index.recaptcha.html /etc/csf/messenger/.
 fi
 if [ ! -e "/etc/csf/ui" ]; then
 	cp -avf conf/ui /etc/csf/.
@@ -374,11 +374,11 @@ cp -avf panels/csf/* panels/webmin/csf/images/
 cp -avf panels/csf/* panels/da/images/
 cp -avf panels/csf/* panels/interworx/images/
 
-cp -avf messenger/*.php /etc/csf/messenger/
+cp -avf etc/messenger/*.php /etc/csf/messenger/
 cp -avf uninstall.sh /usr/local/csf/bin/
 cp -avf csftest.pl /usr/local/csf/bin/
 cp -avf remove_apf_bfd.sh /usr/local/csf/bin/
-cp -avf downloadservers /etc/csf/
+cp -avf conf/downloadservers /etc/csf/
 cp -avf version.txt /etc/csf/
 cp -avf LICENSE /etc/csf/
 cp -avf panels/webmin /usr/local/csf/lib/
